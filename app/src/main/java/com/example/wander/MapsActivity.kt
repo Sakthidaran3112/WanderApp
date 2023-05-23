@@ -12,11 +12,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.example.wander.databinding.ActivityMapsBinding
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.*
 import java.util.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -52,17 +49,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         val latitude = 50.906655
         val longitude = 8.022886
-        val zoomlevel = 15f
+        val zoomlevel = 18f
+        val overlaySize = 100f
 
         val homeLatlng = LatLng(latitude,longitude)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatlng,zoomlevel))
         map.addMarker(MarkerOptions().position(homeLatlng))
+
+        val androidOverlay = GroundOverlayOptions()
+            .image(BitmapDescriptorFactory.fromResource(R.drawable.circle))
+            .position(homeLatlng, overlaySize)
 
         setMapLongClick(map)
 
         setPoiClick(map)
 
         setMapStyle(map)
+
+        map.addGroundOverlay(androidOverlay)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
