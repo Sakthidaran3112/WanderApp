@@ -54,7 +54,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         val latitude = 50.906655
         val longitude = 8.022886
-        val zoomlevel = 18f
+        val zoomlevel = 15f
         val overlaySize = 100f
 
         val homeLatlng = LatLng(latitude,longitude)
